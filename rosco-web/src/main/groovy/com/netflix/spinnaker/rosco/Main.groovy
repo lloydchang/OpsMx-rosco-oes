@@ -43,6 +43,7 @@ import org.springframework.context.annotation.Import
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.web.filter.ShallowEtagHeaderFilter
 //import org.springframework.web.servlet.config.annotation.EnableWebMvc
+import com.netflix.spinnaker.kork.boot.DefaultPropertiesBuilder
 
 
 @Configuration
