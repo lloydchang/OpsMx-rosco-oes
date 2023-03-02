@@ -63,10 +63,6 @@ dependencies {
 
 }
 
-test {
-  useJUnitPlatform()
-}
-
 ospackage {
   from('../halconfig/packer') {
     into '/opt/rosco/config/packer'
