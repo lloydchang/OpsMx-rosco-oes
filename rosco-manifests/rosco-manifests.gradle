@@ -19,7 +19,6 @@ dependencies {
   testImplementation "org.junit.jupiter:junit-jupiter-api"
   testImplementation "org.junit.jupiter:junit-jupiter-params"
   testImplementation "org.junit.platform:junit-platform-runner"
-  testImplementation "org.junit.vintage:junit-vintage-engine"
   testImplementation "org.mockito:mockito-core"
   //testImplementation "org.spockframework:spock-core"
   //api(platform("org.spockframework:spock-bom:2.4-M1-groovy-4.0"))
@@ -27,4 +26,5 @@ dependencies {
   implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
   testImplementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
 
+  testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
 }
