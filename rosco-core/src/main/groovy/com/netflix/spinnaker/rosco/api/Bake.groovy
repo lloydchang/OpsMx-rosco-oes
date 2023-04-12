@@ -26,7 +26,7 @@ import com.netflix.spinnaker.kork.artifacts.model.Artifact
 /**
  * The details of a completed bake.
  *
- * @see BakeryController#lookupBake
+ * //@see BakeryController#lookupBake
  */
 @CompileStatic
 @EqualsAndHashCode(includes = "id")

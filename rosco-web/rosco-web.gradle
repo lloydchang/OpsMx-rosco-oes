@@ -1,9 +1,11 @@
 apply plugin: 'io.spinnaker.package'
+apply plugin: "java-library"
+apply plugin: "groovy"
 
 mainClassName = 'com.netflix.spinnaker.rosco.Main'
 
 configurations.all {
-  exclude group: 'javax.servlet', module: 'servlet-api'
+  //exclude group: 'javax.servlet', module: 'servlet-api'
   exclude group: "org.slf4j", module: "slf4j-log4j12"
 }
 
@@ -11,21 +13,51 @@ dependencies {
   implementation project(":rosco-core")
   implementation project(":rosco-manifests")
   implementation "io.spinnaker.kork:kork-web"
-  implementation "io.swagger:swagger-annotations"
-
-  implementation "org.codehaus.groovy:groovy"
-  implementation "io.spinnaker.kork:kork-artifacts"
-  implementation "io.spinnaker.kork:kork-config"
+  implementation "io.swagger.core.v3:swagger-annotations:2.2.8"
   implementation "org.springframework.boot:spring-boot-starter-web"
-  implementation "net.logstash.logback:logstash-logback-encoder"
+
+  implementation "org.springframework.boot:spring-boot-starter-security"
+  implementation "org.springframework.security:spring-security-core"
+  compileOnly "org.springframework.boot:spring-boot-starter-actuator"
+  implementation "io.spinnaker.kork:kork-config"
+  compileOnly 'org.apache.tomcat:tomcat-servlet-api:11.0.0-M4'
+  //implementation "io.swagger:swagger-annotations:1.5.20"
+  //implementation "io.springfox:springfox-swagger-ui:3.0.0"
+  implementation "io.springfox:springfox-boot-starter:3.0.0"
+  implementation('io.springfox:springfox-swagger2:3.0.0')
+  implementation('io.springfox:springfox-swagger-ui:3.0.0')
+
+  api "org.apache.groovy:groovy:4.0.9"
+  implementation "io.spinnaker.kork:kork-artifacts"
+  implementation "net.logstash.logback:logstash-logback-encoder:4.11"
 
   runtimeOnly "io.spinnaker.kork:kork-runtime"
 
-  testImplementation "com.jakewharton.retrofit:retrofit1-okhttp3-client"
+  testImplementation "com.jakewharton.retrofit:retrofit1-okhttp3-client:1.1.0"
   testImplementation "io.spinnaker.kork:kork-retrofit"
   testImplementation "org.spockframework:spock-core"
   testImplementation "org.springframework.boot:spring-boot-starter-test"
-  testImplementation "org.objenesis:objenesis"
+  testImplementation "org.objenesis:objenesis:3.2"
+/*
+  testImplementation("com.netflix.spectator:spectator-api:1.6.1")
+  testImplementation("com.netflix.spectator:spectator-ext-aws:1.6.1")
+  testImplementation("com.netflix.spectator:spectator-ext-gc:1.6.1")
+  testImplementation("com.netflix.spectator:spectator-ext-jvm:1.6.1")
+  testImplementation("com.netflix.spectator:spectator-nflx-plugin:1.6.1")
+  testImplementation("com.netflix.spectator:spectator-reg-atlas:1.6.1")
+  testImplementation("com.netflix.spectator:spectator-web-spring:1.6.1")
+  testImplementation("com.netflix.spectator:spectator-reg-micrometer:1.6.1")
+
+  implementation("com.netflix.spectator:spectator-api:1.6.1")
+  implementation("com.netflix.spectator:spectator-ext-aws:1.6.1")
+  implementation("com.netflix.spectator:spectator-ext-gc:1.6.1")
+  implementation("com.netflix.spectator:spectator-ext-jvm:1.6.1")
+  implementation("com.netflix.spectator:spectator-nflx-plugin:1.6.1")
+  implementation("com.netflix.spectator:spectator-reg-atlas:1.6.1")
+  implementation("com.netflix.spectator:spectator-web-spring:1.6.1")
+  implementation("com.netflix.spectator:spectator-reg-micrometer:1.6.1")*/
+
+
 }
 
 test {
@@ -59,4 +91,13 @@ buildDeb {
 
 buildRpm {
   requires('unzip')
+}
+
+
+tasks.withType(Tar){
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Zip){
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

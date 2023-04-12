@@ -16,6 +16,7 @@
 
 package com.netflix.spinnaker.rosco
 
+import com.netflix.spinnaker.kork.boot.DefaultPropertiesBuilder
 import com.netflix.spinnaker.rosco.config.RoscoPackerConfigurationProperties
 import com.netflix.spinnaker.rosco.jobs.config.LocalJobConfig
 import com.netflix.spinnaker.rosco.manifests.config.RoscoHelmConfigurationProperties
@@ -29,6 +30,7 @@ import com.netflix.spinnaker.rosco.providers.huaweicloud.config.RoscoHuaweiCloud
 import com.netflix.spinnaker.rosco.providers.oracle.config.RoscoOracleConfiguration
 import com.netflix.spinnaker.rosco.providers.tencentcloud.config.RoscoTencentCloudConfiguration
 import com.netflix.spinnaker.rosco.services.ServiceConfig
+import jakarta.servlet.Filter
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration
 import org.springframework.boot.autoconfigure.groovy.template.GroovyTemplateAutoConfiguration
@@ -40,9 +42,8 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.web.filter.ShallowEtagHeaderFilter
-import com.netflix.spinnaker.kork.boot.DefaultPropertiesBuilder
+//import org.springframework.web.servlet.config.annotation.EnableWebMvc
 
-import javax.servlet.Filter
 
 @Configuration
 @ComponentScan([
@@ -73,6 +74,7 @@ import javax.servlet.Filter
 ])
 @EnableAutoConfiguration(exclude = [BatchAutoConfiguration, GroovyTemplateAutoConfiguration])
 @EnableScheduling
+//@EnableWebMvc
 class Main extends SpringBootServletInitializer {
 
   static final Map<String, String> DEFAULT_PROPS = new DefaultPropertiesBuilder().property("spring.application.name", "rosco").property('bakeAccount','${netflix.account}').build()

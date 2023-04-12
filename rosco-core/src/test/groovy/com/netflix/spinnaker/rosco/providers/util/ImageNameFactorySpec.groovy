@@ -16,6 +16,7 @@
 
 package com.netflix.spinnaker.rosco.providers.util
 
+
 import com.netflix.spinnaker.rosco.api.BakeRequest
 import spock.lang.Specification
 
@@ -345,3 +346,4 @@ class ImageNameFactorySpec extends Specification implements TestDefaults {
       packagesParameter == ""
   }
 }
+

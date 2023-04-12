@@ -1,24 +1,31 @@
+apply plugin: "groovy"
+
 dependencies {
   compileOnly "org.projectlombok:lombok"
   annotationProcessor "org.projectlombok:lombok"
 
   api "io.spinnaker.kork:kork-artifacts"
   api "io.spinnaker.kork:kork-plugins"
-  api "org.codehaus.groovy:groovy"
-
-  implementation "com.netflix.frigga:frigga"
+  api "org.apache.groovy:groovy:4.0.9"
+/*  api("io.springfox:springfox-swagger-ui:2.9.2")
+  api("io.springfox:springfox-swagger2:2.9.2")*/
+  implementation ("io.springfox:springfox-boot-starter:3.0.0")
+  implementation("io.swagger.core.v3:swagger-annotations:2.2.8")
+  implementation "com.netflix.frigga:frigga:0.26.0"
   implementation "io.spinnaker.kork:kork-jedis"
   implementation "io.spinnaker.kork:kork-retrofit"
   implementation "io.spinnaker.kork:kork-swagger"
   implementation "io.spinnaker.kork:kork-web"
-  implementation "com.squareup.retrofit:converter-jackson"
-  implementation "com.squareup.retrofit:retrofit"
-  implementation "io.reactivex:rxjava"
-  implementation "org.apache.commons:commons-exec"
-  implementation "org.codehaus.groovy:groovy"
+  implementation "com.squareup.retrofit:converter-jackson:1.9.0"
+  implementation "com.squareup.retrofit:retrofit:1.9.0"
+  implementation "io.reactivex:rxjava:1.3.8"
+   implementation "org.apache.commons:commons-exec:1.3"
+  implementation "org.apache.groovy:groovy:4.0.9"
   implementation "org.springframework.boot:spring-boot-starter-web"
   implementation "redis.clients:jedis"
-  implementation "com.jakewharton.retrofit:retrofit1-okhttp3-client"
+  implementation "com.jakewharton.retrofit:retrofit1-okhttp3-client:1.1.0"
   testImplementation "org.spockframework:spock-core"
-  testImplementation "org.objenesis:objenesis"
+  testImplementation "org.objenesis:objenesis:3.1"
+
+
 }

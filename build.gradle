@@ -1,47 +1,54 @@
 plugins {
-  id 'io.spinnaker.project' version "$spinnakerGradleVersion" apply false
+    id 'io.spinnaker.project' version "$spinnakerGradleVersion" apply false
 }
 
 allprojects {
-  apply plugin: 'io.spinnaker.project'
+    apply plugin: 'io.spinnaker.project'
+    repositories {mavenCentral()}
+     tasks.withType(Copy).all {
+        duplicatesStrategy 'exclude'
+    }
 }
 
 subprojects {
-  group = "io.spinnaker.rosco"
+    group = "io.spinnaker.rosco"
 
-  if (name != "rosco-bom") {
-    apply plugin: 'java-library'
-    apply plugin: "groovy"
+    if (name != "rosco-bom") {
+        apply plugin: 'java-library'
+        apply plugin: "groovy"
 
-    dependencies {
-      implementation enforcedPlatform("io.spinnaker.kork:kork-bom:$korkVersion")
+        dependencies {
+            implementation enforcedPlatform("io.spinnaker.kork:kork-bom:$korkVersion")
 
-      annotationProcessor platform("io.spinnaker.kork:kork-bom:$korkVersion")
-      annotationProcessor "org.projectlombok:lombok"
-      annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-      testAnnotationProcessor platform("io.spinnaker.kork:kork-bom:$korkVersion")
-      testAnnotationProcessor "org.projectlombok:lombok"
+            annotationProcessor platform("io.spinnaker.kork:kork-bom:$korkVersion")
+            annotationProcessor "org.projectlombok:lombok"
+            annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+            testAnnotationProcessor platform("io.spinnaker.kork:kork-bom:$korkVersion")
+            testAnnotationProcessor "org.projectlombok:lombok"
+            testRuntimeOnly "org.junit.vintage:junit-vintage-engine"
+            testImplementation "org.springframework.boot:spring-boot-starter-test"
+        }
+
+        test {
+            testLogging {
+                exceptionFormat = 'full'
+            }
+            useJUnitPlatform()
+        }
     }
 
-    test {
-      testLogging {
-        exceptionFormat = 'full'
-      }
+    if (korkVersion.endsWith("-SNAPSHOT")) {
+        logger.info("Enabling mavenLocal")
+        repositories {
+            mavenLocal()
+        }
     }
-  }
 
-  if (korkVersion.endsWith("-SNAPSHOT")) {
-    logger.info("Enabling mavenLocal")
-    repositories {
-      mavenLocal()
+    tasks.withType(JavaExec) {
+        if (System.getProperty('DEBUG', 'false') == 'true') {
+            jvmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8187'
+        }
     }
-  }
-
-  tasks.withType(JavaExec) {
-    if (System.getProperty('DEBUG', 'false') == 'true') {
-      jvmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8187'
-    }
-  }
 }
 
 defaultTasks ':rosco-web:run'

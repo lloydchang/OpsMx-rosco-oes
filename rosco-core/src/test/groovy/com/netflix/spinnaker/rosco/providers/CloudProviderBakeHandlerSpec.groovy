@@ -16,6 +16,7 @@
 
 package com.netflix.spinnaker.rosco.providers
 
+
 import com.google.common.base.Strings
 import com.netflix.spinnaker.kork.artifacts.model.Artifact
 import com.netflix.spinnaker.rosco.providers.util.TestDefaults
@@ -71,3 +72,4 @@ class CloudProviderBakeHandlerSpec extends Specification implements TestDefaults
   }
 
 }
+

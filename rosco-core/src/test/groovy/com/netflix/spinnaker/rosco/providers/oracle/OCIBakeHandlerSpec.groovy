@@ -9,6 +9,7 @@
 
 package com.netflix.spinnaker.rosco.providers.oracle
 
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.netflix.spinnaker.rosco.api.Bake
 import com.netflix.spinnaker.rosco.api.BakeOptions
@@ -247,10 +248,11 @@ class OCIBakeHandlerSpec extends Specification implements TestDefaults {
     then:
     with(options) {
       cloudProvider == 'oracle'
-      baseImages.size == 2
+      baseImages.size() == 2
       baseImages[0].id == 'ubuntu16_04'
       baseImages[1].id == 'centos_7'
     }
   }
 
 }
+

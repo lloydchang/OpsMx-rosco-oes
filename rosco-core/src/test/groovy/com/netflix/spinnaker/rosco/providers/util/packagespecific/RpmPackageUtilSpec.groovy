@@ -1,5 +1,6 @@
 package com.netflix.spinnaker.rosco.providers.util.packagespecific
 
+
 import com.netflix.spinnaker.rosco.providers.util.PackageNameConverter
 import com.netflix.spinnaker.rosco.providers.util.TestDefaults
 import spock.lang.Specification
@@ -32,3 +33,4 @@ class RpmPackageUtilSpec extends Specification implements TestDefaults {
                                                                                               arch: "noarch")
   }
 }
+

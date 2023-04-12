@@ -34,7 +34,7 @@ import rx.Scheduler
 import rx.functions.Action0
 import rx.schedulers.Schedulers
 
-import javax.annotation.PostConstruct
+import jakarta.annotation.PostConstruct
 import java.util.concurrent.ConcurrentHashMap
 import java.util.function.ToDoubleFunction
 

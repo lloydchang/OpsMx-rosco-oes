@@ -75,3 +75,4 @@ class AzureImageNameFactorySpec extends Specification implements TestDefaults {
         imageName == "all-unstable-windows"
     }
 }
+

@@ -1,5 +1,6 @@
 package com.netflix.spinnaker.rosco.providers.util
 
+
 import com.netflix.spinnaker.rosco.api.Bake
 import com.netflix.spinnaker.rosco.api.BakeRequest
 import com.netflix.spinnaker.rosco.api.BakeRequest.CloudProviderType
@@ -54,3 +55,4 @@ trait TestDefaults {
     PackageNameConverter.buildOsPackageNames(NUPKG_PACKAGE_TYPE, packages.tokenize(" "))
   }
 }
+

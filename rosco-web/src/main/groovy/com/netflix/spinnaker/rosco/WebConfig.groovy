@@ -25,22 +25,26 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.Ordered
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
+import org.springframework.util.StringUtils
+import org.springframework.web.servlet.config.annotation.*
+
 
 @Configuration
 @CompileStatic
-public class WebConfig extends WebMvcConfigurerAdapter {
+@EnableWebMvc
+public class WebConfig implements WebMvcConfigurer {
 
   @Autowired
   Registry registry
 
+  private final String baseUrl
+
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(
-      new MetricsInterceptor(
-        this.registry, "controller.invocations", ["cloudProvider", "region"], ["BasicErrorController"]
-      )
+            new MetricsInterceptor(
+                    this.registry, "controller.invocations", ["cloudProvider", "region"], ["BasicErrorController"]
+            )
     )
   }
 
@@ -56,4 +60,23 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     return frb
   }
 
+/*
+ * TODO : CVE fixes:12Apr23:Sheetal:Need to check and remove addResourceHandlers() and addViewControllers() methods, if they are not getting used from here.
+*/
+@Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    String baseUrl = StringUtils.trimTrailingCharacter(this.baseUrl, '/' as char);
+    registry.
+            addResourceHandler(baseUrl + "/swagger-ui/**")
+            .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/")
+            .resourceChain(false);
+  }
+
+  @Override
+  public void addViewControllers(ViewControllerRegistry registry) {
+    registry.addViewController(baseUrl + "/swagger-ui/")
+            .setViewName("forward:" + baseUrl + "/swagger-ui/index.html");
+  }
+
 }
+

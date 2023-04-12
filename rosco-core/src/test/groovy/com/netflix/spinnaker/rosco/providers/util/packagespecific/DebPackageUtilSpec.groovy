@@ -1,5 +1,6 @@
 package com.netflix.spinnaker.rosco.providers.util.packagespecific
 
+
 import com.netflix.spinnaker.rosco.providers.util.PackageNameConverter
 import com.netflix.spinnaker.rosco.providers.util.TestDefaults
 import spock.lang.Specification
@@ -37,3 +38,4 @@ class DebPackageUtilSpec extends Specification implements TestDefaults {
                                                                                                arch: "all")
   }
 }
+

@@ -1,5 +1,6 @@
 package com.netflix.spinnaker.rosco.manifests.kustomize
 
+
 import com.netflix.spinnaker.kork.artifacts.model.Artifact
 import com.netflix.spinnaker.rosco.jobs.BakeRecipe
 import com.netflix.spinnaker.rosco.manifests.ArtifactDownloader
@@ -248,3 +249,4 @@ class KustomizeTemplateUtilsSpec extends Specification {
         BakeManifestRequest.TemplateRenderer.KUSTOMIZE4 | "kustomize4"
     }
 }
+

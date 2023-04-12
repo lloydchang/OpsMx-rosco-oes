@@ -16,6 +16,8 @@
 
 package com.netflix.spinnaker.rosco.config
 
+import com.netflix.spectator.api.DefaultRegistry
+import com.netflix.spectator.api.Registry
 import com.netflix.spinnaker.config.PluginsAutoConfiguration
 import com.netflix.spinnaker.kork.jedis.JedisClientDelegate
 import com.netflix.spinnaker.kork.jedis.RedisClientDelegate
@@ -41,6 +43,11 @@ import redis.clients.jedis.JedisPool
 @Slf4j
 @Import(PluginsAutoConfiguration.class)
 class RoscoConfiguration {
+
+  @Bean
+  Registry getRegistry() {
+    return new DefaultRegistry();
+  }
 
   @Bean
   String roscoInstanceId() {

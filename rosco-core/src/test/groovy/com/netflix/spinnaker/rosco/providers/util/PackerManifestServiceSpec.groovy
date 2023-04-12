@@ -16,6 +16,7 @@
 
 package com.netflix.spinnaker.rosco.providers.util
 
+
 import spock.lang.Specification
 
 import java.nio.file.Paths
@@ -32,3 +33,4 @@ class PackerManifestServiceSpec extends Specification implements TestDefaults {
       fileName == "/path/to/tmp/test-bake-id-manifest.json"
   }
 }
+

@@ -16,6 +16,7 @@
 
 package com.netflix.spinnaker.rosco.providers.util
 
+
 import spock.lang.Specification
 
 class PackerManifestSpec extends Specification implements TestDefaults {
@@ -48,3 +49,4 @@ class PackerManifestSpec extends Specification implements TestDefaults {
       thrown(IllegalStateException)
   }
 }
+

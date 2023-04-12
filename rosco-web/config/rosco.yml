@@ -513,3 +513,7 @@ swagger:
     - /api/v2.*
     - /bakeOptions.*
     - /status.*
+springfox:
+  documentation:
+    swagger-ui:
+      enabled:true

@@ -59,12 +59,19 @@ class JedisConfig {
         } finally {
           jedis?.close()
         }
-        def internal = jedisPool.internalPool //thx groovy
+	//commented for exception: groovy.lang.MissingPropertyException:
+        // No such property: internalPool for class: redis.clients.jedis.JedisPool
+        /* def internal = jedisPool.internalPool //thx groovy
         health.withDetail('maxIdle', internal.maxIdle)
         health.withDetail('minIdle', internal.minIdle)
         health.withDetail('numActive', internal.numActive)
         health.withDetail('numIdle', internal.numIdle)
-        health.withDetail('numWaiters', internal.numWaiters)
+        health.withDetail('numWaiters', internal.numWaiters) */
+        health.withDetail('maxIdle', jedisPool.maxIdle)
+        health.withDetail('minIdle', jedisPool.minIdle)
+        health.withDetail('numActive', jedisPool.numActive)
+        health.withDetail('numIdle', jedisPool.numIdle)
+        health.withDetail('numWaiters', jedisPool.numWaiters)
 
         return health.build()
       }

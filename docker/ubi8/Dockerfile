@@ -1,4 +1,4 @@
-FROM quay.io/opsmxpublic/ubi8-jre-11:v1
+FROM quay.io/opsmxpublic/ubifips:8.7
 MAINTAINER sig-platform@spinnaker.io
 COPY rosco-web/build/install/rosco /opt/rosco
 COPY rosco-web/config              /opt/rosco
@@ -10,7 +10,7 @@ ENV PACKER_VERSION=1.6.6
 
 WORKDIR /packer
 
-RUN yum install -y java-11-openjdk-headless.x86_64 wget unzip curl tar git  openssl curl net-tools nettle && \
+RUN yum install -y java-17-openjdk-devel wget unzip curl tar git  openssl curl net-tools nettle && \
   wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
   unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
   rm packer_${PACKER_VERSION}_linux_amd64.zip
