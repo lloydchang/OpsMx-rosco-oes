@@ -29,6 +29,9 @@ if (spinnakerGradleVersion.endsWith('-SNAPSHOT')) {
             mavenLocal()
             mavenCentral()
             gradlePluginPortal()
+             maven{
+                url "https://nexus.opsmx.net/repository/maven-snapshots/"
+            }
         }
     }
 }
