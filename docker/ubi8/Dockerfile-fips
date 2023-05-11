@@ -43,9 +43,7 @@ WORKDIR /packer
 
 
 
-#RUN yum install -y java-17-openjdk-devel wget unzip curl tar git  openssl  net-tools nettle  
-  
- RUN yum install -y  wget unzip  && \
+RUN yum install -y java-17-openjdk-devel wget unzip curl tar git  openssl  net-tools nettle  && \
   wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
   unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
   rm packer_${PACKER_VERSION}_linux_amd64.zip
@@ -70,7 +68,7 @@ RUN mkdir kustomize && \
 
 ENV PATH "kustomize:$PATH"
 
-RUN yum -y remove  unzip
+RUN yum -y remove unzip curl tar  openssl net-tools nettle 
 RUN yum -y remove clean all && rm -rf /var/cache
 
 RUN useradd spinnaker
