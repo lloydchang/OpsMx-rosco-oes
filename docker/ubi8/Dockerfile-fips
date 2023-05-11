@@ -68,7 +68,7 @@ RUN mkdir kustomize && \
 
 ENV PATH "kustomize:$PATH"
 
-RUN yum -y remove unzip curl tar  openssl net-tools nettle 
+#RUN yum -y remove unzip curl tar  openssl net-tools nettle 
 RUN yum -y remove clean all && rm -rf /var/cache
 
 RUN useradd spinnaker
