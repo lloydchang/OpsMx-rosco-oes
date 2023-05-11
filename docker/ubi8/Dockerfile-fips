@@ -7,7 +7,9 @@ RUN yum -y update && yum -y install --nodocs ${JAVA_PACKAGE}
 # Build a custom JRE.
 # For now, we will include all modules.  We could try to remove the ones
 # we don't need to reduce image size and security attack surface.
+
 WORKDIR /jrebuild
+
 RUN java --list-modules | cut -d'@' -f1 > modules
 RUN jlink --output runtime --add-modules `paste -sd, - < modules` --compress 2 --vm server
 
@@ -41,12 +43,9 @@ WORKDIR /packer
 
 
 
-#RUN yum install -y java-17-openjdk-devel wget unzip curl tar git  openssl  net-tools nettle  && \
-  wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
-  unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
-  rm packer_${PACKER_VERSION}_linux_amd64.zip
+#RUN yum install -y java-17-openjdk-devel wget unzip curl tar git  openssl  net-tools nettle  
   
-  RUN yum install -y  wget unzip  && \
+ RUN yum install -y  wget unzip  && \
   wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip && \
   unzip packer_${PACKER_VERSION}_linux_amd64.zip && \
   rm packer_${PACKER_VERSION}_linux_amd64.zip
