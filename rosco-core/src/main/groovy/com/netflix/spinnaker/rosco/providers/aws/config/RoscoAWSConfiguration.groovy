@@ -31,6 +31,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 
 import jakarta.annotation.PostConstruct
+import org.springframework.context.annotation.Lazy
 
 @Configuration
 @ConditionalOnProperty('aws.enabled')
@@ -40,8 +41,12 @@ class RoscoAWSConfiguration {
   @Autowired
   CloudProviderBakeHandlerRegistry cloudProviderBakeHandlerRegistry
 
-  @Autowired
   AWSBakeHandler awsBakeHandler
+
+  @Autowired
+  RoscoAWSConfiguration(@Lazy AWSBakeHandler awsBakeHandler) {
+    this.awsBakeHandler = awsBakeHandler
+  }
 
   @Bean
   @ConfigurationProperties('aws.bakery-defaults')
