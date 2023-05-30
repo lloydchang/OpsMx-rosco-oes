@@ -92,7 +92,8 @@ public class KustomizationFileReader {
   private Kustomization convert(Artifact artifact) throws IOException {
     Representer representer = new Representer(new DumperOptions());
     representer.getPropertyUtils().setSkipMissingProperties(true);
-    return new Yaml(new Constructor(Kustomization.class,new LoaderOptions()), representer).load(downloadFile(artifact));
+    return new Yaml(new Constructor(Kustomization.class, new LoaderOptions()), representer)
+        .load(downloadFile(artifact));
   }
 
   private InputStream downloadFile(Artifact artifact) throws IOException {
