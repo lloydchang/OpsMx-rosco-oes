@@ -37,9 +37,9 @@ COPY halconfig/packer              /opt/rosco/config/packer
 RUN mkdir -p /opt/jaeger
 COPY jaeger/opentelemetry-javaagent.jar /opt/jaeger/opentelemetry-javaagent.jar
 
-ENV KUSTOMIZE_VERSION=3.8.5
+ENV KUSTOMIZE_VERSION=3.8.6
 
-ENV PACKER_VERSION=1.6.6
+ENV PACKER_VERSION=1.8.1
 
 WORKDIR /packer
 
