@@ -16,7 +16,6 @@
 
 package com.netflix.spinnaker.rosco.providers.alicloud
 
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.netflix.spinnaker.rosco.api.Bake
 import com.netflix.spinnaker.rosco.api.BakeRequest
@@ -527,4 +526,3 @@ class AliCloudBakeHandlerSpec extends Specification implements TestDefaults {
       1 * packerCommandFactoryMock.buildPackerCommand("", parameterMap, null, "$configDir/$alicloudBakeryDefaults.templateFile")
   }
 }
-

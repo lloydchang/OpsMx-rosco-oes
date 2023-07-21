@@ -60,11 +60,8 @@ import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 import org.springframework.http.HttpStatus;
 
-@RunWith(JUnitPlatform.class)
 final class HelmTemplateUtilsTest {
 
   private ArtifactDownloader artifactDownloader;

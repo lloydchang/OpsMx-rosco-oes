@@ -25,13 +25,18 @@ subprojects {
             annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
             testAnnotationProcessor platform("io.spinnaker.kork:kork-bom:$korkVersion")
             testAnnotationProcessor "org.projectlombok:lombok"
-            testRuntimeOnly "org.junit.vintage:junit-vintage-engine"
             testImplementation "org.springframework.boot:spring-boot-starter-test"
         }
 
         test {
             testLogging {
                 exceptionFormat = 'full'
+                afterSuite { desc, result ->
+                    if (!desc.parent) {
+                        println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                        println "Report file: ${reports.html.entryPoint}"
+                    }
+                }
             }
             useJUnitPlatform()
         }
