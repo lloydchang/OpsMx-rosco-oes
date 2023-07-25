@@ -607,4 +607,3 @@ class AzureBakeHandlerSpec extends Specification implements TestDefaults{
 
   }
 }
-

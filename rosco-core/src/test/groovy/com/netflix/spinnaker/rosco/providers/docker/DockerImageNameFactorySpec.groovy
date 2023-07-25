@@ -1,6 +1,5 @@
 package com.netflix.spinnaker.rosco.providers.docker
 
-
 import com.netflix.spinnaker.rosco.api.BakeRequest
 import com.netflix.spinnaker.rosco.providers.util.TestDefaults
 import spock.lang.Specification
@@ -69,4 +68,3 @@ class DockerImageNameFactorySpec extends Specification implements TestDefaults {
       packagesParameter == "kato redis-server"
   }
 }
-

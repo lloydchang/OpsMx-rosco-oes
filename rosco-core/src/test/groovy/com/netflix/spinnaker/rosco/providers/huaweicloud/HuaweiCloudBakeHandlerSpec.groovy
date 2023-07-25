@@ -16,7 +16,6 @@
 
 package com.netflix.spinnaker.rosco.providers.huaweicloud
 
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.netflix.spinnaker.rosco.api.Bake
 import com.netflix.spinnaker.rosco.api.BakeRequest
@@ -520,4 +519,3 @@ class HuaweiCloudBakeHandlerSpec extends Specification implements TestDefaults {
       1 * packerCommandFactoryMock.buildPackerCommand("", parameterMap, null, "$configDir/$huaweicloudBakeryDefaults.templateFile")
   }
 }
-

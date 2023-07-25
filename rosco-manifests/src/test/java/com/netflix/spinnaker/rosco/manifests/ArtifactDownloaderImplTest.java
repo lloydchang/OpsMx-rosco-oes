@@ -31,14 +31,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 import org.springframework.http.HttpStatus;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedByteArray;
 
-@RunWith(JUnitPlatform.class)
 final class ArtifactDownloaderImplTest {
   private final ClouddriverService clouddriverService = mock(ClouddriverService.class);
   private static final Artifact testArtifact =
