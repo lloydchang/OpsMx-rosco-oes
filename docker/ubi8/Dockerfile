@@ -6,7 +6,7 @@ COPY halconfig/packer              /opt/rosco/config/packer
 
 ENV KUSTOMIZE_VERSION=5.0.3
 
-ENV PACKER_VERSION=1.9.1
+ENV PACKER_VERSION=1.10.0
 
 WORKDIR /packer
 
